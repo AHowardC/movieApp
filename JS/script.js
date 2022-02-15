@@ -38,7 +38,7 @@ $(document).ready(function(){
 	$('.main-menu a p').removeClass('active-browse');
 	$('.playing p').addClass('active-browse');
 	getNowPlaying();
-
+	
 	// Handling the search bar functionality.
 	// Some conditional styles, a basic UX flow and a form submit.
 	$('.fa-search').click(function(event){
@@ -123,7 +123,7 @@ $(document).ready(function(){
 	// Basic search from the restful API.
 	///////////////////////
 	function searchMovies(searchQuery){
-		currentQuery = "searchMovies";
+		currentQuery = "searchMovies"; 
 		$('.fa-heart').removeClass('active-favorites');
 		$.getJSON(searchMoviesUrl, function(searchData){
 			currentBaseUrl = searchMoviesUrl;
@@ -151,7 +151,7 @@ $(document).ready(function(){
 				// Grab any information on Saved Favorites from Local Storage.
 				var savedFavorite = localStorage.getItem('favorite');
 				if(savedFavorite == null){
-					savedFavorite = "";
+					savedFavorite = "";	
 				}
 				var savedArray = savedFavorite.split(',');
 				movieIDArr.push(searchID);
@@ -220,7 +220,7 @@ $(document).ready(function(){
 				var nowPlayingID = nowPlayingData.results[i].id;
 				var savedFavorite = localStorage.getItem('favorite');
 				if(savedFavorite == null){
-					savedFavorite = "";
+					savedFavorite = "";	
 				}
 				var savedArray = savedFavorite.split(',');
 				movieIDArr.push(nowPlayingID);
@@ -251,7 +251,7 @@ $(document).ready(function(){
 					nowPlayingHTML += '</div>';
 				nowPlayingHTML += '</div>';
 				$('#movie-grid').html(nowPlayingHTML);
-			}
+			}			
 		});
 	};
 	///////////////////////
@@ -267,7 +267,7 @@ $(document).ready(function(){
 		getUpcoming();
 	});
 	///////////////////////
-	// Again, the function is basically the same as well. Just pulling unreleased movies within a set date range out from today.
+	// Again, the function is basically the same as well. Just pulling unreleased movies within a set date range out from today. 
 	///////////////////////
 	function getUpcoming(){
 		currentQuery = "upcoming";
@@ -295,7 +295,7 @@ $(document).ready(function(){
 				var upcomingID = upcomingData.results[i].id;
 				var savedFavorite = localStorage.getItem('favorite');
 				if(savedFavorite == null){
-					savedFavorite = "";
+					savedFavorite = "";	
 				}
 				var savedArray = savedFavorite.split(',');
 				movieIDArr.push(upcomingID);
@@ -400,7 +400,7 @@ $(document).ready(function(){
 				var discoverID = discoverData.results[i].id;
 				var savedFavorite = localStorage.getItem('favorite');
 				if(savedFavorite == null){
-					savedFavorite = "";
+					savedFavorite = "";	
 				}
 				var savedArray = savedFavorite.split(',');
 				movieIDArr.push(discoverID);
@@ -475,7 +475,7 @@ $(document).ready(function(){
 			var ratingAvg = favoritesData.vote_average;
 			var savedFavorite = localStorage.getItem('favorite');
 			if(savedFavorite == null){
-				savedFavorite = "";
+				savedFavorite = "";	
 			}
 			var savedArray = savedFavorite.split(',');
 			favoritesHTML += '<div class="movie-item col-sm-6 col-md-4 col-lg-3" id="' + favorite + '" data-toggle="modal" data-target=".movie-modal" onclick="updateModal(this);">';
@@ -507,7 +507,7 @@ $(document).ready(function(){
 			$('#movie-grid').html(favoritesHTML);
 		});
 	}
-}); // <==== End of Document ready.
+}); // <==== End of Document ready. 
 // I had to play with what worked in an out of the main ready function, but this is currenly working, so good enough for now. Added to ToDo for version 2!
 ///////////////////////
 // Here is the function to animate the menu. Just fancy css classes.
@@ -533,7 +533,7 @@ function updateModal(thisMovie){
 	var ticketsHTML = '';
 	var trailerHTML = '';
 	// reseting some variables...
-	$.getJSON(currentUrl, function(detailsData){
+	$.getJSON(currentUrl, function(detailsData){		
 		var zip = 30075;
 		var title = detailsData.original_title;
 		var release = detailsData.release_date;
@@ -586,7 +586,7 @@ function updateModal(thisMovie){
 		for(let i = 0; i < genreArray.length; i++){
 			var visGenre = genreArray.join(', ');
 		}
-		// Setup a rotating backdrop with the gallery images.
+		// Setup a rotating backdrop with the gallery images. 
 		var backdropCounter = 0;
 		var backdropRotate = setInterval(function(){
 			$('#main-content').html('');
@@ -632,14 +632,14 @@ function updateModal(thisMovie){
 				ratingHTML += ' &nbsp; &nbsp; (' + ratingCount + ' reviews) &nbsp; | &nbsp; Favorite: <i id="heart" class="fa fa-heart-o" aria-hidden="true"></i>';
 			ratingHTML += '</div>';
 		ratingHTML += '</div>';
-
+		
 		// This added a new sub-modal on top of the main modal for the trailer video player.
 		trailerHTML += '<iframe id="player" src="" width="100%" height="100%" frameborder="0" allowfullscreen></iframe>';
 
 		// Saved local storage settings for the favorite button.
 		var savedFavorite = localStorage.getItem('favorite');
 		if(savedFavorite == null){
-			savedFavorite = "";
+			savedFavorite = "";	
 		}
 		var savedArray = savedFavorite.split(',');
 		// Listener for favorite. If it is in the array, this movie will load as a favorite.
@@ -661,7 +661,7 @@ function updateModal(thisMovie){
 		$('.tickets').html(ticketsHTML);
 		$('[data-toggle="tooltip"]').tooltip();
 		///////////////////////
-		// This is the favorite click listener function.
+		// This is the favorite click listener function. 
 		// If it is already a favorite, remove the id and save to local storage.
 		// Else, add the append to the array and save that to local storage.
 		///////////////////////
@@ -692,7 +692,7 @@ function updateModal(thisMovie){
 			///////////////////////
 			// Helper functions to append or remove the item.
 			///////////////////////
-			function appendToStorage(name, data){
+			function appendToStorage(name, data){ 
 				localStorage.setItem(name, old + ',' + data);
 			}
 			function removeFromStorage(name, data){
@@ -735,7 +735,7 @@ function updateModal(thisMovie){
 					var ratingAvg = favoritesData.vote_average;
 					var savedFavorite = localStorage.getItem('favorite');
 					if(savedFavorite == null){
-						savedFavorite = "";
+						savedFavorite = "";	
 					}
 					var savedArray = savedFavorite.split(',');
 					favoritesHTML += '<div class="movie-item col-sm-6 col-md-4 col-lg-3" id="' + favorite + '" data-toggle="modal" data-target=".movie-modal" onclick="updateModal(this);">';
@@ -766,7 +766,7 @@ function updateModal(thisMovie){
 					favoritesHTML += '</div>';
 					$('#movie-grid').html(favoritesHTML);
 				});
-			}
+			}			
 		});
 		///////////////////////
 		// Finally, here is the autoplay for the trailer modal. I wanted to autoplay, be available to change settings, or make fullscreen, and still be able to stop on close...
@@ -781,7 +781,7 @@ function updateModal(thisMovie){
 				$(theModal+' iframe').attr('src', videoSRCauto);
 				$(theModal).on('hidden.bs.modal',function () {
 					$(theModal+' iframe').attr('src', videoSRC);
-				});
+				});	 
 			});
 		}
 		autoPlayYouTubeModal();
@@ -789,5 +789,5 @@ function updateModal(thisMovie){
 }
 ///////////////////////
 // The End
-// Thanks for reading! If you have any comments or suggestions, let me know on GitHub, or LinkedIn!
+// Thanks for reading! If you have any comments or suggestions, let me know at andytuttle.io, GitHub, or LinkedIn!
 ///////////////////////
